@@ -306,7 +306,7 @@
             <div class="col-1">
                 <div class="row pt-3 pb-2">
                     <div class="col-xl-12 text-center">
-                        <a href="#/"><img src="Images/for-each-image-1.jpg" height="50px" width="100%" class="zooming"></a>
+                        <a href="#/"><img src="Images/1.jpg" height="50px" width="100%" class="zooming"></a>
                     </div>
                     <div class="col-xl-12 mt-3">
                        <a href="#/"><img src="Images/for-each-image-2.jpg" height="50px" width="100%" class="zooming-1"></a> 
@@ -328,7 +328,7 @@
             </div>
             <div class="col-5 text-center zooming-open-head wm-zoom-container my-zoom-1">
               <div class="wm-zoom-box">
-                <img src="Images/for-each-image-1.jpg" height="400px" width="405px" class="wm-zoom-default-img" alt="alternative text" data-hight-src="for-each-image-1.jpg">
+                <img id="product-title" src="Images/1.jpg" height="400px" width="405px" class="wm-zoom-default-img" alt="alternative text" data-hight-src="for-each-image-1.jpg">
               </div>
             </div>
 <!--hidden--> <div class="col-5 text-center zooming-open-1 wm-zoom-container my-zoom-1">
@@ -348,10 +348,12 @@
             <div class="col-5">
                 <div class="row">
                     <div class="col-12 pt-3">
-                        <p style="font-size:25px;font-weight:600">Symbol Men's Solid Regular fit Half Sleeve Polo</p>
+                        <!-- fetch here  -->
+                      <p style="font-size:25px;font-weight:600"></p>
                     </div>
                     <div class="col-12 pl-5">
-                        <p style="font-weight:600;font-size:20px;"> Price:<span style="color:red">&#8377;200.00-&#8377;300.00</span></p>
+                        <!-- fetch here  -->
+                        <p style="font-weight:600;font-size:20px;"> Price:<span id="product-price" style="color:red"></span></p>
                     </div>
                     <div class="col-12 pl-5">
                         <p style="font-weight:600;font-size:20px;">size: <span style="border:1px solid;padding:1% 3%" class="ml-3">M</span> <span style="border:1px solid;padding:1% 4%" class="ml-2">L</span> <span style="border:1px solid;padding:1% 3%" class="ml-2">XL</span> <br class="break"><a href="#/" style="color:black" class="ml-3 open-pop-container">size chart <img src="Images/size-icon.png" height="20px"></a></p>
@@ -378,7 +380,22 @@
             <div class="col-6 pl-5 text-white">
                 <a href="login-form.html" style="color:white"><span style="width:30%;border:1px solid;padding:2% 5%;text-transform: uppercase;font-size:15px;font-weight:600;background-color:rgb(255, 174, 0);border-radius:10px;"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span class="ml-2">add to card</span></span></a>
                 <a href="login-form.html" style="color:white"><span style="width:30%;border:1px solid;padding:2% 5%;text-transform: uppercase;font-size:15px;font-weight:600;background-color:orangered;border-radius:10px;" class="ml-3"><i class="fa fa-bolt" aria-hidden="true"></i><span class="ml-2"> buy now</span></span></a>
-            </div>
+                <br> <br> <br>
+                <!-- fetch here -->
+                <!-- <a id="cart-add" style="color:white"><span style="width:30%;border:1px solid;padding:2% 5%;text-transform: uppercase;font-size:15px;font-weight:600;background-color:green;border-radius:10px;" class="ml-3"><i class="fa fa-bolt" aria-hidden="true"></i><span class="ml-2">Add to group cart</span></span></a> -->
+                
+                <div id="cart-add" class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Add to group cart
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <!-- <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a> -->
+                  </div>
+                </div>
+
+              </div>
         </div>
         <div class="rows pb-5">
           <div class="col">
@@ -411,8 +428,10 @@
             </div>
         </div>
         </div>
-        <div class="col-10 col-xs-9 text-center zooming-open-head ">
-          <img src="Images/for-each-image-1.jpg" height="400px" width="95%">
+        <div id="huhu" class="col-10 col-xs-9 text-center zooming-open-head ">
+          <!-- fetch here  -->
+          <img id="product-image" src="" height="400px" width="95%"> 
+
         </div>
 <!--hidden--> <div class="col-10 text-center zooming-open-1">
           <img src="Images/for-each-image-2.jpg" height="400px" width="95%">

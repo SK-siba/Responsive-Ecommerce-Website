@@ -1,5 +1,6 @@
 $(document).ready(function(){
     //middle//
+    log("here...")
     $(".front-show").click(function(){
         $(".front-hide").css("display","block");
         $(".front-show").css("display","none");
@@ -74,8 +75,44 @@ $(window). scroll(function(){
     }
     else{
     $("#top-containt"). css("background" , "white");}});
-$('.parallax-window').parallax({imageSrc: 'desktop-1.jpg'});
-
-
-
+// $('.parallax-window').parallax({imageSrc: 'desktop-1.jpg'});
+        main();
 })
+
+
+
+function log(e){console.log(e);}
+// document.addEventListener('load', main());
+
+var id;
+var user_details;
+
+function drp(g) { return `<a class="dropdown-item" href="#">${g}</a>`; }
+
+function checkGrp(e){
+    log("grp check");
+    let node = document.getElementById("cart-add");
+    let par = node.getElementsByTagName("div")[0];
+    log(par)
+    let g1 = "brahs", g2 = "helo", g3 = "sins";
+    par.innerHTML = (drp(g1) + drp(g2) + drp(g3));
+
+}
+
+function main(){
+    log("starting...");
+    let url = window.location.href;
+    let pp = url.split("?")[1];
+    id = pp.split('=')[1];
+    document.getElementById("cart-add").addEventListener('click', checkGrp);
+    let dd = document.querySelector("#product-image");
+    dd.src = "Images/" + id + ".jpg";
+    let getUrl = "http://localhost:3000/api/product?" + id;
+    // fetch(getUrl)
+    //     .then( res => {
+    //         document.getElementById("product-title").innerHTML = "";
+    //         document.getElementById("product-price").innerHTML = "";
+    //     })
+    //     .catch( err => {
+    //     })
+}

@@ -87,6 +87,9 @@ function log(e){console.log(e);}
 var id;
 var user_details;
 
+var domain = "https://apiforapp.herokuapp.com";
+var hid = ["0", "6186ddf2e1fda8fc421d9093", "6186d7d7e1fda8fc421d908b", "6186d30a7228bd50ff3f0e37", "6186d811e1fda8fc421d908d"];
+
 function drp(g) { return `<a class="dropdown-item" href="#">${g}</a>`; }
 
 function checkGrp(e){
@@ -107,12 +110,16 @@ function main(){
     document.getElementById("cart-add").addEventListener('click', checkGrp);
     let dd = document.querySelector("#product-image");
     dd.src = "Images/" + id + ".jpg";
-    let getUrl = "http://localhost:3000/api/product?" + id;
-    // fetch(getUrl)
-    //     .then( res => {
-    //         document.getElementById("product-title").innerHTML = "";
-    //         document.getElementById("product-price").innerHTML = "";
-    //     })
-    //     .catch( err => {
-    //     })
+    let getUrl = domain + "/api/products/" + hid[id];
+    // let getUrl = "https://apiforapp.herokuapp.com/api/products/6186d30a7228bd50ff3f0e37";
+    fetch(getUrl)
+        .then( res => res.json())
+        .then( data => {
+            log(data)
+            document.getElementById("product-title").innerHTML = data.name;
+            document.getElementById("product-price").innerHTML = data.price;
+        })
+        .catch( err => {
+            log(err)
+        })
 }

@@ -125,4 +125,46 @@ $(document).ready(function(){
     else{ $(".confirm-password-signup-hide").text("");}
     //confirm-pass for sign-up
     })
+    main();
 })
+
+
+function log(e){console.log(e);}
+var domain = "https://apiforapp.herokuapp.com";
+
+const auth = (e) => {
+    log("auth...")
+    let uname = document.getElementById("login-username").value;
+    let pass = document.getElementById("login-password").value;
+    log(uname); log(pass);
+
+    let opt = {
+        method : "POST",
+        headers: {
+            'Content-Type': 'application/json'
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body : JSON.stringify({username :  uname, password : pass})
+    };
+
+    document.getElementById("msggg").innerHTML = "";
+    fetch(domain + "/api/users/login", opt)
+    .then(Res => Res.json())
+    .then( res => {
+        // window.location.href = "http://www.w3schools.com";
+        log(res)
+        if(res.error){
+            document.getElementById("msggg").innerHTML = res.error;    
+        }
+        else {
+            document.getElementById("msggg").innerHTML = "Success";
+            window.location.href = "/ecommerce.html";
+        }
+    })
+    .catch( err => log(err))
+}
+
+function main(){
+    log("starting...");
+    document.getElementById("login-btn").addEventListener('click', auth);
+}

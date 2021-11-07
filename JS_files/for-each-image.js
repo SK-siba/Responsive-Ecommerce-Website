@@ -88,19 +88,47 @@ var id;
 var user_details;
 
 var domain = "https://apiforapp.herokuapp.com";
+// var domain = "http://localhost:3000";
+
 var hid = ["0", "6186ddf2e1fda8fc421d9093", "6186d7d7e1fda8fc421d908b", "6186d30a7228bd50ff3f0e37", "6186d811e1fda8fc421d908d"];
 
-function drp(g) { return `<a class="dropdown-item" href="#">${g}</a>`; }
+function drp(g) { return `<button name="${g}" onclick="sendMsg("${g}")" class="dropdown-item" href="#">${g}</button>`; }
 
 function checkGrp(e){
     log("grp check");
     let node = document.getElementById("cart-add");
     let par = node.getElementsByTagName("div")[0];
     log(par)
-    let g1 = "brahs", g2 = "helo", g3 = "sins";
-    par.innerHTML = (drp(g1) + drp(g2) + drp(g3));
+    let g1 = "diwali", g2 = "hello";
+    par.innerHTML = "";
+    // par.innerHTML = (drp(g1) + drp(g2));
+    // var voiceList = document.querySelector('#cart-add'); //get the dropdown list array
+    // var button  = document.querySelector('#button');
+
+    // var options = [] //keep the options of dorpdown here
+    var button = document.createElement("button");
+    button.classList.add("dropdown-item");
+    button.innerHTML = g1;
+    button.addEventListener('click', () => {
+        sendMsg(g1);
+    });
+
+    var button2 = document.createElement("button");
+    button2.classList.add("dropdown-item");
+    button2.innerHTML = g2;
+    button2.addEventListener('click', () => {
+        sendMsg(g2);
+    });
+
+    par.appendChild(button);
+    par.appendChild(button2);
 
 }
+
+// const socket = io("http://localhost:3000");
+const socket = io("https://apiforapp.herokuapp.com");
+
+var prd = { name : "", price : "", img : "", link : "", id : ""};
 
 function main(){
     log("starting...");
@@ -110,6 +138,8 @@ function main(){
     document.getElementById("cart-add").addEventListener('click', checkGrp);
     let dd = document.querySelector("#product-image");
     dd.src = "Images/" + id + ".jpg";
+    log(id);
+    prd.id = id;
     let getUrl = domain + "/api/products/" + hid[id];
     // let getUrl = "https://apiforapp.herokuapp.com/api/products/6186d30a7228bd50ff3f0e37";
     fetch(getUrl)
@@ -118,8 +148,37 @@ function main(){
             log(data)
             document.getElementById("product-title").innerHTML = data.name;
             document.getElementById("product-price").innerHTML = data.price;
+            prd.name = data.name;
+            prd.price = data.price;
         })
         .catch( err => {
             log(err)
         })
+
+
+    log("ok")
+    log(socket);
+
+}
+
+// 
+function sendMsg(grp){
+    
+    log(grp)
+
+    message = grp + "," + prd.name + "," + prd.price + "," + window.location.href + "," + prd.id;
+
+    socket.emit('product-share', message, (error) => {
+        
+        //enabling the button after the message is sent
+        // $messageFormButton.removeAttribute('disabled')
+        // $messageFormInput.value = ''  //clear input after message been sent to server
+        // $messageFormInput.focus() // refocusing the cursor in the input box
+
+        if(error){
+            return console.log(error);
+        }
+
+        console.log(`The message was delivered.`)
+    })
 }

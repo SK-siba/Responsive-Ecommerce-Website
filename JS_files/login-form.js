@@ -131,6 +131,8 @@ $(document).ready(function(){
 
 function log(e){console.log(e);}
 var domain = "https://apiforapp.herokuapp.com";
+// var domain = "http://localhost:3000";
+
 
 const auth = (e) => {
     log("auth...")
